@@ -1,4 +1,4 @@
-namespace windowsFormsApp
+namespace CommerceApp
 {
     partial class MainForm
     {
