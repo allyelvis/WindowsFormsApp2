@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace windowsFormsApp
+namespace CommerceApp
 {
     public partial class MainForm : Form
     {

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace windowsFormsApp
+namespace CommerceApp
 {
     public partial class InventoryManagementForm : Form
     {

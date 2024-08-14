@@ -1,6 +1,6 @@
 using System;
 
-namespace windowsFormsApp
+namespace CommerceApp
 {
     public class Sale
     {

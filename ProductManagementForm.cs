@@ -1,14 +1,12 @@
-// Add EF Core usage to ProductManagementForm
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
-namespace 
+namespace CommerceApp
 {
     public partial class ProductManagementForm : Form
     {
-        private AppDbContext dbContext = new AppDbContext();
+        private List<Product> productList = new List<Product>();
 
         public ProductManagementForm()
         {
@@ -20,18 +18,19 @@ namespace
         {
             var product = new Product
             {
+                Id = productList.Count + 1,
                 Name = txtProductName.Text,
                 Price = decimal.Parse(txtPrice.Text),
                 Stock = int.Parse(txtStock.Text)
             };
-            dbContext.Products.Add(product);
-            dbContext.SaveChanges();
+            productList.Add(product);
             RefreshProductGrid();
         }
 
         private void RefreshProductGrid()
         {
-            dataGridViewProducts.DataSource = dbContext.Products.ToList();
+            dataGridViewProducts.DataSource = null;
+            dataGridViewProducts.DataSource = productList;
         }
 
         private void btnEditProduct_Click(object sender, EventArgs e)
@@ -42,7 +41,6 @@ namespace
                 selectedProduct.Name = txtProductName.Text;
                 selectedProduct.Price = decimal.Parse(txtPrice.Text);
                 selectedProduct.Stock = int.Parse(txtStock.Text);
-                dbContext.SaveChanges();
                 RefreshProductGrid();
             }
         }
@@ -52,8 +50,7 @@ namespace
             if (dataGridViewProducts.SelectedRows.Count > 0)
             {
                 var selectedProduct = (Product)dataGridViewProducts.SelectedRows[0].DataBoundItem;
-                dbContext.Products.Remove(selectedProduct);
-                dbContext.SaveChanges();
+                productList.Remove(selectedProduct);
                 RefreshProductGrid();
             }
         }
